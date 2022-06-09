@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if category_posts %}
+
+<h1>{{ cats }}</h1>
+<br>
+{% for post in category_posts %}
+<div class="card">
+<div class="card-header"><h5><a class= "text-dark" href ="{%  url 'detail' post.pk  %}">{{ post.title }}</a></h5>
+     <small class="text-muted"> Name:{{post.author.first_name}}  {{post.author.last_name}} | Email: {{post.author.email}} | 
+    {{post.date}} </small>
+</div>
+ <div class="card-body">
+    {{post.snippet}} <br>
+    <small><a href ="{%  url 'detail' post.pk  %}">(Read more)</a></small>
+ </div>
+ <div class="card-footer text-muted">
+    {% if user.is_authenticated %}
+    <a href="{%  url 'update' post.pk   %}">(Edit)</a>
+    <a class="text-danger" href="{%  url 'delete' post.pk   %}">(Delete)</a><br>
+    {% endif %}
+ </div>
+</div>
+<br>
+<br>
+{% endfor %}
+{% else %}
+Sorry this page does not exist!
+{% endif %}
+{% endblock %}

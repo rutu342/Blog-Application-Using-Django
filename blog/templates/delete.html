@@ -1,0 +1,22 @@
+{%extends 'base.html' %}
+{%block title%}
+Edit Post
+{%endblock%}
+{%block content %}
+{%if user.is_authenticated %}
+{% if user.id == post.author.id %}
+
+<h1>Delete {{post.title}}</h1>
+<br><br>
+<form method="POST">
+    {%csrf_token%}
+   <h2>Are you Sure?</h2><br><br>
+    <button class="btn btn-danger">Delete Post!</button>
+</form>
+{%else%}
+you are not allowed to delete
+{%endif%}
+{%else %}
+Login to delete
+{%endif%}
+{%endblock%}

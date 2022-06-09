@@ -1,0 +1,35 @@
+{%extends 'base.html' %}
+{%block content%}
+
+
+<h1>Post</h1>
+<br>
+
+{% for post in object_list %}
+<div class="card ">
+  
+    <div class ="card-header"><h5><a class="text-dark" href ="{%  url 'detail' post.pk  %}">{{ post.title }}</a></h5>
+      <small class="text-muted"><a href="{% url 'category' post.category|slugify %}"> Category : {{post.category}}</a> <br>Name: {{post.author.first_name}}  {{post.author.last_name}} | Email: {{post.author.email}}  | {{post.date}} </small></div>
+    
+    <div class="card-body">
+     {{post.snippet}} <br>
+     <small><a href ="{%  url 'detail' post.pk  %}">(Read more)</a></small>
+     </div>
+
+    <div class="card-footer text-muted">
+    {% if user.is_authenticated %}
+
+    {% if user.id == post.author.id %}
+    <a href="{%  url 'update' post.pk   %}">(Edit)</a>
+    |  <a class="text-danger" href="{%  url 'delete' post.pk   %}">(Delete)</a><br>
+    {% endif %}
+    {% endif %}
+    </div>
+
+  </div>
+  </div>
+ <br>
+ <br>
+{% endfor %}
+
+{%endblock%}

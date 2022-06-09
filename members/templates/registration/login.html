@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block extrastyles%}
+<link rel="stylesheet" href="{% static 'blog/css/base.css' %}">
+{%endblock extrastyles%}
+{%block title%}
+Login
+{%endblock%}
+
+{%block content %}
+<br>
+<br>
+<br>
+<div class="col d-flex justify-content-center">
+<div class="card" style="width: 20rem;">
+    <div class="card-body">
+      <h2 class="card-title" style="text-align:center;">Login Here!</h2>
+      <br>
+      <form method="POST">
+        {%csrf_token%}
+        <div class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+        </div>
+        <br>
+        
+        <div class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+      <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary">Login</button> &nbsp; &nbsp; &nbsp; <a class="btn btn-primary" href="{% url  'signup'  %}" role="button">Signup</a>
+</form>
+    </div>
+  </div>
+   
+    </div>
+
+{%endblock%}

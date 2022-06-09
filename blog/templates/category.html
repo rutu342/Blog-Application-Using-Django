@@ -1,0 +1,17 @@
+{%extends 'base.html' %}
+{%block title%}
+Add category
+{%endblock%}
+{%block content %}
+{%if user.is_authenticated %}
+<h1>Add Category</h1>
+<br>
+<form method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button class="btn btn-secondary">Add</button>
+</form>
+{%else%}
+Please login to add Category
+{%endif%}
+{%endblock%}
